@@ -7,10 +7,27 @@ const element = galleryItems.map((image) => '<div class="gallery__item"><a class
 gallery.insertAdjacentHTML('beforeEnd', element);
   
   
-document.querySelector(".gallery__link").addEventListener("click", function (event) {
-  event.preventDefault()
-  //basicLightbox.create(`
-	//	<img width="1400" height="900" src="${event.original}">
-	//`).show()
-  console.log(event)
-})
+gallery.addEventListener("click", onclick);
+  
+function onclick(event) {
+    if (!event.target.classList.contains("gallery__image")) {
+        return;
+    }
+    
+    const instance = basicLightbox.create(`
+        <img src="${event.target.dataset}"/> 
+`)
+    instance.show();
+}
+
+
+document.addEventListener("keydown", closeModal);
+
+function closeModal(event) {
+  //console.log('123123')
+  if (event.code === "Escape") {
+
+    instance.close();
+      window.removeEventListener('keydown', closeModal);
+  }
+}     
