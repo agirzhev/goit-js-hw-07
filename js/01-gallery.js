@@ -14,20 +14,22 @@ function onclick(event) {
         return;
     }
     
-    const instance = basicLightbox.create(`
-        <img src="${event.target.dataset}"/> 
-`)
-    instance.show();
+  const instance = basicLightbox.create(`
+        <img src="${event.target.dataset.source}"/> 
+`, {
+    onShow: instance => { window.addEventListener('keydown', onEscPress); },
+    onClose: instance => {
+      window.removeEventListener('keydown', onEscPress);
+    }
+  });
+  instance.show();
+  
+  function onEscPress(event) {
+  if (event.code === "Escape") {
+    instance.close();
+      window.removeEventListener('keydown', onEscPress);
+  }
+}
 }
 
 
-document.addEventListener("keydown", closeModal);
-
-function closeModal(event) {
-  //console.log('123123')
-  if (event.code === "Escape") {
-
-    instance.close();
-      window.removeEventListener('keydown', closeModal);
-  }
-}     
