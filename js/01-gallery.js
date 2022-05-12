@@ -18,9 +18,7 @@ function onclick(event) {
         <img src="${event.target.dataset.source}"/> 
 `, {
     onShow: instance => { window.addEventListener('keydown', onEscPress); },
-    onClose: instance => {
-      window.removeEventListener('keydown', onEscPress);
-    }
+    onClose: instance => { window.removeEventListener('keydown', onEscPress); }
   });
   instance.show();
   

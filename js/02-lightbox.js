@@ -9,7 +9,7 @@ gallery.insertAdjacentHTML('beforeEnd', element);
   
 gallery.addEventListener("click", onclick);
   
-  let ligthBox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
+  let ligthBox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: 'alt'});
   ligthBox.on('show.simplelightbox', function () {
 	// do something…
 });  
